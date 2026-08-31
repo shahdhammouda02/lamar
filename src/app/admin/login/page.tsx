@@ -53,7 +53,7 @@ export default function LoginPage() {
       <div style={{ width: '100%', maxWidth: 380, borderRadius: 20, padding: '2.25rem', background: '#FFFFFF', border: '1px solid rgba(20,24,29,0.10)', boxShadow: '0 20px 50px rgba(20,24,29,0.08)' }}>
         <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'var(--font-archivo)', fontWeight: 800, fontSize: '1.6rem', letterSpacing: '0.08em', color: '#14181D' }}>LAMAR</h1>
-          <p style={{ marginTop: '0.35rem', fontSize: '0.85rem', color: '#97A0AC' }}>Admin Dashboard</p>
+          <p style={{ marginTop: '0.35rem', fontSize: '0.85rem', color: '#97A0AC' }}>Admin Dashboardd</p>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
