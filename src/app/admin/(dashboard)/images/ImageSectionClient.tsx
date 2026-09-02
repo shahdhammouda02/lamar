@@ -31,12 +31,14 @@ function SectionUploader({ sectionKey, disabled }: { sectionKey: string; disable
   const bound = uploadSectionImage.bind(null, sectionKey)
   const [state, formAction, pending] = useActionState(bound, null)
   const [ok, setOk] = useState(false)
+  const [selectedCount, setSelectedCount] = useState(0)
   const ref = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!state?.ok) return
     setOk(true)
     if (ref.current) ref.current.value = ''
+    setSelectedCount(0)
     const t = setTimeout(() => setOk(false), 3000)
     return () => clearTimeout(t)
   }, [state])
@@ -51,26 +53,46 @@ function SectionUploader({ sectionKey, disabled }: { sectionKey: string; disable
           accept="image/*"
           multiple
           disabled={disabled || pending}
-          style={{ fontSize: '0.78rem', color: C.sub, maxWidth: 260 }}
+          onChange={(e) => setSelectedCount(e.target.files?.length || 0)}
+          style={{ position: 'absolute', opacity: 0, width: 1, height: 1 }}
         />
         <button
-          type="submit"
+          type="button"
+          onClick={() => ref.current?.click()}
           disabled={disabled || pending}
           style={{
-            background: disabled ? C.page : C.teal,
-            color: disabled ? C.muted : '#fff',
-            border: 'none',
+            background: disabled ? C.page : 'transparent',
+            color: disabled ? C.muted : C.text,
+            border: C.border,
             borderRadius: 5,
             padding: '0.45rem 1rem',
             fontSize: '0.78rem',
             fontWeight: 700,
             cursor: disabled || pending ? 'not-allowed' : 'pointer',
+            fontFamily: 'inherit',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {selectedCount > 0 ? `${selectedCount} geselecteerd` : '+ Bestanden kiezen'}
+        </button>
+        <button
+          type="submit"
+          disabled={disabled || pending || selectedCount === 0}
+          style={{
+            background: disabled || selectedCount === 0 ? C.page : C.teal,
+            color: disabled || selectedCount === 0 ? C.muted : '#fff',
+            border: 'none',
+            borderRadius: 5,
+            padding: '0.45rem 1rem',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            cursor: disabled || pending || selectedCount === 0 ? 'not-allowed' : 'pointer',
             opacity: pending ? 0.65 : 1,
             fontFamily: 'inherit',
             whiteSpace: 'nowrap',
           }}
         >
-          {pending ? 'Uploaden…' : '+ Uploaden'}
+          {pending ? 'Uploaden…' : 'Uploaden'}
         </button>
 
         {ok && (

@@ -1,11 +1,13 @@
 import { type Lang, t } from "@/lib/i18n";
 import { getContent } from "@/lib/content";
+import { getSiteText } from "@/lib/siteText";
 import ReviewBadges from "@/components/public/ReviewBadges";
 
 const HERO_FALLBACK = "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80";
 
 export default async function HeroSection({ lang }: { lang: Lang }) {
   const trans = t[lang]?.hero || t.nl.hero;
+  const tx = await getSiteText();
 
   let heroBg = HERO_FALLBACK;
   try {
@@ -55,7 +57,7 @@ export default async function HeroSection({ lang }: { lang: Lang }) {
             textShadow: "0 4px 12px rgba(0,0,0,0.3)",
           }}
         >
-          {trans.headlineA} <br />
+          {tx('home_hero_headline_a') || trans.headlineA} <br />
           <span
             style={{
               fontWeight: 700,
@@ -65,7 +67,7 @@ export default async function HeroSection({ lang }: { lang: Lang }) {
               textUnderlineOffset: "8px",
             }}
           >
-            {trans.headlineB}
+            {tx('home_hero_headline_b') || trans.headlineB}
           </span>{" "}
           <br />
           {trans.h1c}
@@ -99,7 +101,7 @@ export default async function HeroSection({ lang }: { lang: Lang }) {
               transition: "transform 0.2s, filter 0.2s",
             }}
           >
-            {trans.getQuote}
+            {tx('home_hero_cta_quote') || trans.getQuote}
           </a>
 
           <div

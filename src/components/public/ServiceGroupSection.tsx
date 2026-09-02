@@ -13,9 +13,10 @@ type Props = {
   subheading?: string;
   services: ServiceItem[];
   startIndex?: number; // إضافة متغير لبداية العد
+  images?: string[];
 };
 
-export default function ServiceGroupSection({ heading, subheading, services, startIndex = 0 }: Props) {
+export default function ServiceGroupSection({ heading, subheading, services, startIndex = 0, images = [] }: Props) {
   const getImage = (title: string, globalIndex: number) => {
     // إذا كان الترتيب الإجمالي هو العنصر السادس (رقم 5)
     if (globalIndex === 5) {
@@ -62,7 +63,7 @@ export default function ServiceGroupSection({ heading, subheading, services, sta
               >
                 {/* Background Image */}
                 <img 
-                  src={getImage(svc.title, globalIndex)} 
+                  src={images[i] || getImage(svc.title, globalIndex)} 
                   alt={svc.title} 
                   style={{
                     position: 'absolute',

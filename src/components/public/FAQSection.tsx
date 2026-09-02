@@ -20,7 +20,7 @@ export default function FAQSection({
   return (
     <section id="faq" style={{ background: '#F8FAFC', padding: '7rem 3.5rem' }}>
       <div className="faq-grid" style={{ display: 'flex', flexDirection: 'column', gap: '3rem', maxWidth: 860, margin: '0 auto' }}>
-        
+
         {/* Header */}
         <div className="rv" style={{ textAlign: 'center' }}>
           {/* Pill */}
@@ -90,19 +90,19 @@ export default function FAQSection({
                   }}>
                     {it.q}
                   </span>
-                  
+
                   {/* Circular icon */}
-                  <span style={{ 
-                    flexShrink: 0, 
-                    width: 34, 
-                    height: 34, 
-                    borderRadius: '50%', 
-                    border: isOpen ? '1px solid #007a63' : '1px solid #CBD5E1', 
-                    display: 'flex', 
-                    alignItems: 'center', 
+                  <span style={{
+                    flexShrink: 0,
+                    width: 34,
+                    height: 34,
+                    borderRadius: '50%',
+                    border: isOpen ? '1px solid #007a63' : '1px solid #CBD5E1',
+                    display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
                     color: isOpen ? '#FFFFFF' : '#4A5568',
-                    transition: 'all 0.3s ease', 
+                    transition: 'all 0.3s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'none',
                     background: isOpen ? '#007a63' : 'transparent',
                   }}>
